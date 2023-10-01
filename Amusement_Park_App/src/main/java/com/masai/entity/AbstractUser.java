@@ -3,6 +3,7 @@ package com.masai.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ public abstract class AbstractUser {
 	@NotBlank(message = "Address should be there")
 	private String Address;
 	private String mobileNumber;
+	@Column(unique=true)
 	private String email;
 
 }

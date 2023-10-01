@@ -9,5 +9,5 @@ import com.masai.entity.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-	Optional<T> findByEmail();
+ Optional<Customer> findByEmail();
 }
