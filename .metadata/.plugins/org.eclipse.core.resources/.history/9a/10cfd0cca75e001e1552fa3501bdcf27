@@ -1,0 +1,16 @@
+package com.masai.service;
+
+import java.util.List;
+
+import com.masai.entity.Activity;
+import com.masai.entity.Admin;
+
+public interface AdminService {
+
+	public Admin insertAdmin(Admin admin);
+	public Admin updateAdmin(Admin admin);
+	public Admin deleteAdmin(Integer adminId);
+	public List<Activity> getAllActivitiesOfCustomer(Integer customerId);
+	public List<Activity> getAllActivities
+	
+}

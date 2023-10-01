@@ -1,0 +1,9 @@
+package com.masai.service;
+
+public interface TicketService {
+
+	public TicketBooking insertTicketBooking(TicketBooking ticketBooking);
+	public TicketBooking updateTicketBooking(TicketBooking ticketBooking);
+	
+	
+}

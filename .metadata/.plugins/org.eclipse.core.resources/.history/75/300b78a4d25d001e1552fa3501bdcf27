@@ -1,0 +1,33 @@
+package com.masai.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@Entity
+public class Activity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer activityId;
+	
+	@NotBlank(message = "description should be there")
+	private String description;
+	
+	@Min(value = 1L)
+	private double charges;
+
+	public Activity(String description, double charges) {
+		super();
+		this.description = description;
+		this.charges = charges;
+	}
+
+}
