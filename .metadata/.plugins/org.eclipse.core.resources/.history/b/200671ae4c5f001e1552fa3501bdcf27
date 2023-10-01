@@ -1,0 +1,67 @@
+package com.masai.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.masai.entity.Customer;
+import com.masai.exception.NotFoundException;
+import com.masai.repository.CustomerRepository;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	private CustomerRepository customerRepository;
+
+	// setter dependency injection
+	public void setCustomerRepository(CustomerRepository customerRepository) {
+		this.customerRepository = customerRepository;
+	}
+
+	@Override
+	public Customer insertCustomer(Customer customer) {
+		//validateCustomer(customer.getUsername(), customer.getPassword());
+		return customerRepository.save(customer);
+	}
+
+	@Override
+	public Customer updateCustomer(Customer customer) {
+		return customerRepository.save(customer);
+	}
+
+	@Override
+	public Customer deleteCustomer(Integer customerId) {
+		Optional<Customer> cus = customerRepository.findById(customerId);
+		if(cus.isPresent()) {
+			// you are here means customer is present
+			customerRepository.deleteById(customerId);
+			return cus.get();
+		}
+		throw new NotFoundException("No customer found with customerid " + customerId);
+	}
+
+	@Override
+	public List<Customer> viewCustomers() {
+		List<Customer> customers = customerRepository.findAll();
+		if(customers.size()==0) {
+			throw new NotFoundException("No Customer Found");
+		}
+		return customers;
+	}
+
+	@Override
+	public Customer viewCustomer(Integer customerId) {
+		Optional<Customer> cus = customerRepository.findById(customerId);
+		if(cus.isPresent()) {
+			return cus;
+		}
+		throw new NotFoundException("No Customer found with customerId " + customerId);
+	}
+
+	@Override
+	public Customer validateCustomer(String username, String password) {
+		return null;
+	}
+
+}

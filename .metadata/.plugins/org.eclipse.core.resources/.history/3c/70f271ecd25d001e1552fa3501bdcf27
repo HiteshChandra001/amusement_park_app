@@ -1,0 +1,13 @@
+package com.masai.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Ticket {
+
+}

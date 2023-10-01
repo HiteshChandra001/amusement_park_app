@@ -1,0 +1,16 @@
+package com.masai.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
+public class Activity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer activityId;
+	private String description;
+	private double charges;
+	
+}

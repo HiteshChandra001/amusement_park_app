@@ -1,0 +1,20 @@
+package com.masai.entity;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Ticket {
+
+	private Integer ticketId;
+	private LocalDateTime dateTime;
+	
+	@OneToOne
+	private Customer customer;
+	
+}

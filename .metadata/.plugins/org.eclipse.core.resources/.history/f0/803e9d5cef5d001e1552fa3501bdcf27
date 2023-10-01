@@ -1,0 +1,23 @@
+package com.masai.entity;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+public class Ticket {
+
+	private Integer ticketId;
+	private LocalDateTime dateTime;
+	
+	@ManyToOne
+	@JoinColumn(name = "customer_Id")
+	private Customer customer;
+	
+}

@@ -1,0 +1,16 @@
+package com.masai.exception;
+
+import java.time.LocalDateTime;
+
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ErrorDetails methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException ex) {
+		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.get, null)
+	}
+}
