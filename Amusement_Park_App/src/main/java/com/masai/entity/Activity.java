@@ -1,0 +1,45 @@
+package com.masai.entity;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Entity
+public class Activity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer activityId;
+	
+	@NotBlank(message = "Activity description should be there")
+	private String description;
+	
+	@Min(value = 1L, message = "Minimum charge is 1 rupee")
+	private Float charges;
+	
+	@OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	@JsonIgnore
+	private List<Ticket> tickets;
+
+}
