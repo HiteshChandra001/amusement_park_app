@@ -31,7 +31,6 @@ public class Ticket {
 	private Integer ticketId;
 	private LocalDateTime dateTime;
 	
-	
 	@ManyToOne
 	@JoinColumn(name = "customer_Id")
 	@JsonIgnore
