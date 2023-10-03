@@ -1,10 +1,7 @@
 package com.masai.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -47,7 +44,7 @@ public class AdminServiceImpl implements AdminService {
 	public Admin updateAdmin(Admin admin) {
 		Optional<Admin> a = adminRepository.findById(admin.getAdminId());
 		if(a.isPresent()) {
-			return adminRepository.save(a.get());
+			return adminRepository.save(admin);
 		}
 		throw new NotFoundException("Admin not found with admin id "+ admin.getAdminId());
 	}
@@ -100,18 +97,18 @@ public class AdminServiceImpl implements AdminService {
 //		}
 //	}
 
-	@Override
-	public List<Activity> getActivitiesDatewise() {
+//	@Override
+//	public List<Activity> getActivitiesDatewise() {
 //		List<Ticket> list = ticketRepository.findByOrderByDateTime();
 //		List<Activity> actList = list.stream().map((t->t.getActivity())).toList();
 //		
 //		if(actList.size()==0)throw new NotFoundException("no activity found");
 //		return actList;
-		return null;
-	}
+//		return null;
+//	}
 
-	@Override
-	public List<Activity> getAllActivitiesForDays(Integer customerId, LocalDateTime fromDate, LocalDateTime toDate) {
+//	@Override
+//	public List<Activity> getAllActivitiesForDays(Integer customerId, LocalDateTime fromDate, LocalDateTime toDate) {
 //		Optional<Customer> find = customerRepository.findById(customerId);
 //		if(!find.isPresent())throw new InvalidInputException("customer id doesnot exist");
 //		
@@ -122,13 +119,13 @@ public class AdminServiceImpl implements AdminService {
 //		if(actList.size()==0)throw new NotFoundException("no activity found");
 //		return actList;
 		
-		return null;
-	}
-
-	@Override
-	public List<Activity> getActivitiesCustomerwise() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//		return null;
+//	}
+//
+//	@Override
+//	public List<Activity> getActivitiesCustomerwise() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

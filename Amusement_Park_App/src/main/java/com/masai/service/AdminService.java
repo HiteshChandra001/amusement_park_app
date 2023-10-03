@@ -13,8 +13,8 @@ public interface AdminService {
 	public Admin deleteAdmin(Integer adminId);
 	public List<Activity> getAllActivities(Integer customerId);
 	public List<Activity> getAllActivities();  
-	public List<Activity> getActivitiesCustomerwise();
-	public List<Activity> getActivitiesDatewise();
-	public List<Activity> getAllActivitiesForDays(Integer customerId, LocalDateTime fromDate, LocalDateTime toDate);
+//	public List<Activity> getActivitiesCustomerwise();
+//	public List<Activity> getActivitiesDatewise();
+//	public List<Activity> getAllActivitiesForDays(Integer customerId, LocalDateTime fromDate, LocalDateTime toDate);
 	
 }
