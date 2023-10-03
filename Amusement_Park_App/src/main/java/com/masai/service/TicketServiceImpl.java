@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.masai.entity.Customer;
 import com.masai.entity.Ticket;
 import com.masai.exception.NotFoundException;
 import com.masai.repository.TicketRepository;

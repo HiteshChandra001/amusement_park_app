@@ -52,8 +52,11 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Admin deleteAdmin(Integer adminId) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Admin> find = adminRepository.findById(adminId);
+		if(!find.isPresent())throw new InvalidInputException("admin id doesnot exist");
+		 adminRepository.deleteById(adminId);
+		 return find.get();
+		 
 	}
 
 	@Override
@@ -97,14 +100,25 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<Activity> getActivitiesDatewise() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Ticket> list = ticketRepository.findByOrderByDateTime();
+		List<Activity> actList = list.stream().map((t->t.getActivity())).toList();
+		
+		if(actList.size()==0)throw new NotFoundException("no activity found");
+		return actList;
 	}
 
 	@Override
 	public List<Activity> getAllActivitiesForDays(Integer customerId, LocalDateTime fromDate, LocalDateTime toDate) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Customer> find = customerRepository.findById(customerId);
+		if(!find.isPresent())throw new InvalidInputException("customer id doesnot exist");
+		
+		List<Ticket> list = ticketRepository.findByDateTimeGreaterThanEqualsAndLesserThanEquals(fromDate, toDate);
+
+		List<Activity> actList = list.stream().map((t->t.getActivity())).toList();
+		
+		if(actList.size()==0)throw new NotFoundException("no activity found");
+		return actList;
+		
 	}
 
 	@Override

@@ -6,6 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.masai.entity.Activity;
+<<<<<<< HEAD
+=======
+import com.masai.exception.InvalidInputException;
+>>>>>>> main
 import com.masai.exception.NotFoundException;
 import com.masai.repository.ActivityRepository;
 
@@ -13,7 +17,7 @@ import com.masai.repository.ActivityRepository;
 public class ActivityServiceImpl implements ActivityService {
 
 	private ActivityRepository activityRepository;
-
+	
 	// constructor injection
 	public ActivityServiceImpl(ActivityRepository activityRepository) {
 		super();
@@ -33,6 +37,7 @@ public class ActivityServiceImpl implements ActivityService {
 			return a.get();
 		}
 		throw new NotFoundException("Activity not available for activity Id " + activity.getActivityId());
+
 	}
 
 	@Override
