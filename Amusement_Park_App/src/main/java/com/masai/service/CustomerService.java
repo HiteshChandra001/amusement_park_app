@@ -17,5 +17,7 @@ public interface CustomerService {
 	public Customer viewCustomer(Integer customerId);
 
 	public Customer validateCustomer(String username, String password);
+	
+	public Customer viewCustomerByEmail(String email);
 
 }

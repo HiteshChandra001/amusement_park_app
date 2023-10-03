@@ -999,3 +999,12 @@
 2023-10-01 15:01:47,890 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2023-10-01 15:01:48,182 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2023-10-01 15:01:48,192 [Worker-101: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\Project\quixotic-snail-9802\Amusement_Park_App\src\test\resources
+2023-10-02 11:11:54,710 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2023-10-02 11:12:30,812 [Worker-1: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.masai:Amusement_Park_App:0.0.1-SNAPSHOT @ E:\Project\quixotic-snail-9802\Amusement_Park_App\pom.xml.
+2023-10-02 11:12:34,924 [Worker-1: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-10-02 11:12:34,992 [Worker-1: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2023-10-02 11:12:35,003 [Worker-1: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\Project\quixotic-snail-9802\Amusement_Park_App\src\test\resources
+2023-10-02 11:18:16,623 [Worker-10: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.masai:Amusement_Park_App:0.0.1-SNAPSHOT @ E:\Project\quixotic-snail-9802\Amusement_Park_App\pom.xml.
+2023-10-02 11:18:18,267 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-10-02 11:18:18,328 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2023-10-02 11:18:18,343 [Worker-10: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\Project\quixotic-snail-9802\Amusement_Park_App\src\test\resources

@@ -68,4 +68,10 @@ public class CustomerController {
 		List<Customer> customers = customerService.viewCustomers();
 		return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
 	}
+	
+	@GetMapping("/customers/{customerId}")
+	public ResponseEntity<Customer> viewCustomer(@PathVariable @Valid Integer customerId){
+		Customer customer = customerService.viewCustomer(customerId);
+		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+	}
 }
