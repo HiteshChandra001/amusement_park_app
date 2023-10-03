@@ -6,10 +6,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.masai.entity.Activity;
-<<<<<<< HEAD
-=======
-import com.masai.exception.InvalidInputException;
->>>>>>> main
 import com.masai.exception.NotFoundException;
 import com.masai.repository.ActivityRepository;
 
