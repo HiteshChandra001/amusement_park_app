@@ -7,20 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.masai.entity.Customer;
 import com.masai.entity.Ticket;
-import com.masai.exception.InvalidInputException;
-import com.masai.repository.CustomerRepository;
+import com.masai.exception.NotFoundException;
 import com.masai.repository.TicketRepository;
 
 @Service
 public class TicketServiceImpl implements TicketService {
 
-	private CustomerRepository customerRepository;
 	private TicketRepository ticketRepository;
-	
-	
-	public TicketServiceImpl(CustomerRepository customerRepository, TicketRepository ticketRepository) {
+
+	// constructor injection
+	public TicketServiceImpl(TicketRepository ticketRepository) {
 		super();
-		this.customerRepository = customerRepository;
 		this.ticketRepository = ticketRepository;
 	}
 
@@ -31,24 +28,31 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public Ticket updateTicket(Ticket ticket) {
-		Optional<Ticket> find = ticketRepository.findById(ticket.getTicketId());
-		if(!find.isPresent())throw new InvalidInputException("ticket id doesnot exist");
-		return ticketRepository.save(ticket);
+		Optional<Ticket> t = ticketRepository.findById(ticket.getTicketId());
+		if (t.isPresent()) {
+			// we are here means ticket is available for ticket Id;
+			return ticketRepository.save(ticket);
+		}
+		throw new NotFoundException("No ticket is available for ticket Id " + ticket.getTicketId());
 	}
 
 	@Override
 	public Ticket deleteTicket(Integer ticketId) {
-		Optional<Ticket> find = ticketRepository.findById(ticketId);
-		if(!find.isPresent())throw new InvalidInputException("ticket id doesnot exist");
-		ticketRepository.deleteById(ticketId);
-		return find.get();
+		Optional<Ticket> t = ticketRepository.findById(ticketId);
+		if (t.isPresent()) {
+			ticketRepository.deleteById(ticketId);
+			return t.get();
+		}
+		throw new NotFoundException("No ticket is available for ticket Id " + ticketId);
 	}
 
 	@Override
 	public List<Ticket> viewAllTickets(Integer customerId) {
-		Optional<Customer> find = customerRepository.findById(customerId);
-		if(!find.isPresent())throw new InvalidInputException("customer id doesnot exist");
-		return find.get().getTickets();
+		if (ticketRepository.count() == 0) {
+			throw new NotFoundException("No ticket found");
+		}
+		List<Ticket> tickets = ticketRepository.findAll();
+		return tickets;
 	}
 
 }

@@ -7,5 +7,7 @@ import com.masai.entity.Admin;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
-
+	
+	
+	
 }

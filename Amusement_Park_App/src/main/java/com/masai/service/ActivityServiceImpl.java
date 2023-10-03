@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.masai.entity.Activity;
+<<<<<<< HEAD
+=======
 import com.masai.exception.InvalidInputException;
+>>>>>>> main
 import com.masai.exception.NotFoundException;
 import com.masai.repository.ActivityRepository;
 
@@ -15,6 +18,12 @@ public class ActivityServiceImpl implements ActivityService {
 
 	private ActivityRepository activityRepository;
 	
+	// constructor injection
+	public ActivityServiceImpl(ActivityRepository activityRepository) {
+		super();
+		this.activityRepository = activityRepository;
+	}
+
 	@Override
 	public Activity insertActivity(Activity activity) {
 		return activityRepository.save(activity);
@@ -22,30 +31,41 @@ public class ActivityServiceImpl implements ActivityService {
 
 	@Override
 	public Activity updateActivity(Activity activity) {
-		Optional<Activity> find = activityRepository.findById(activity.getActivityId());
-		if(!find.isPresent())throw new InvalidInputException("activity id doesnot exist");
-		return activityRepository.save(activity);
+		Optional<Activity> a = activityRepository.findById(activity.getActivityId());
+		if (a.isPresent()) {
+			// we are here means activity is available
+			return a.get();
+		}
+		throw new NotFoundException("Activity not available for activity Id " + activity.getActivityId());
+
 	}
 
 	@Override
 	public Activity deleteActivity(Integer activityId) {
-		Optional<Activity> find = activityRepository.findById(activityId);
-		if(!find.isPresent())throw new InvalidInputException("activity id doesnot exist");
-		 activityRepository.deleteById(activityId);
-		 return find.get();
+		Optional<Activity> a = activityRepository.findById(activityId);
+		if (a.isPresent()) {
+			activityRepository.deleteById(activityId);
+			return a.get();
+		}
+		throw new NotFoundException("Activity not availabel for activity Id " + activityId);
 	}
 
 	@Override
 	public List<Activity> viewActivitiesOfCharges(Float charges) {
-		List<Activity> list = activityRepository.findByCharges(charges);
-		if(list.size()==0)throw new NotFoundException("no activity found");
-		return list;
+		List<Activity> activities = activityRepository.findByChargesLessThan(charges);
+		if (activities.size() == 0) {
+			throw new NotFoundException("No activity found under this price");
+		}
+		return activities;
 	}
 
 	@Override
 	public Integer countActivitiesOfCharges(Float charges) {
-		List<Activity> list = activityRepository.findByCharges(charges);
-		return list.size();
+		List<Activity> activities = activityRepository.findByChargesLessThan(charges);
+		if (activities.size() == 0) {
+			throw new NotFoundException("No activity found under this price");
+		}
+		return (int) activities.stream().count();
 	}
 
 }

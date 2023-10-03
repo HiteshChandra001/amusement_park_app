@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -30,15 +29,15 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ticketId;
 	private LocalDateTime dateTime;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "customer_Id")
 	@JsonIgnore
 	private Customer customer;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "activity_Id")
 	@JsonIgnore
 	private Activity activity;
-	
+
 }

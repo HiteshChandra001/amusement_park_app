@@ -14,8 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	private CustomerRepository customerRepository;
 
-
-	//constructor injection
+	// constructor injection
 	public CustomerServiceImpl(CustomerRepository customerRepository) {
 		super();
 		this.customerRepository = customerRepository;
@@ -31,7 +30,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer updateCustomer(Customer customer) {
 		// validateCustomer(customer.getUsername(), customer.getPassword());
 		Optional<Customer> cus = customerRepository.findById(customer.getCustomerId());
-		if(cus.isPresent()) {
+		if (cus.isPresent()) {
+			//we are here, means customer is available so we can proceed for updation
 			return customerRepository.save(customer);
 		}
 		throw new NotFoundException("customer not found for customer Id " + customer.getCustomerId());
@@ -69,6 +69,16 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer validateCustomer(String username, String password) {
 		return null;
+	}
+
+	@Override
+	public Customer viewCustomerByEmail(String email) {
+		Optional<Customer> cus = customerRepository.findByEmail(email);
+		if (cus.isPresent()) {
+			//we are here means customer is available with given email id
+			return cus.get();
+		}
+		throw new NotFoundException("No customer found with email " + email);
 	}
 
 }

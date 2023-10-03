@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,7 +19,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -30,16 +30,15 @@ public class Activity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer activityId;
-	
+
 	@NotBlank(message = "Activity description should be there")
 	private String description;
-	
+
 	@Min(value = 1L, message = "Minimum charge is 1 rupee")
 	private Float charges;
-	
-	@OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "activity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@ToString.Exclude
-	@JsonIgnore
 	private List<Ticket> tickets;
 
 }

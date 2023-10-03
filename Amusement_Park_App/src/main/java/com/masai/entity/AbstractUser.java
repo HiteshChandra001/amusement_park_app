@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,14 +23,15 @@ public abstract class AbstractUser {
 
 	@NotBlank(message = "username can't be blank")
 	private String username;
-	
-	@JsonProperty(access = Access.WRITE_ONLY)
+
+//	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
-	
+
 	@NotBlank(message = "Address should be there")
 	private String Address;
 	private String mobileNumber;
-	@Column(unique=true)
+	@Email
+	@Column(unique = true)
 	private String email;
 
 }
